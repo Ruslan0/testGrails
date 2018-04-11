@@ -7,6 +7,8 @@ import org.codehaus.groovy.runtime.InvokerHelper
 
 class ReportJsonApiController {
 
+    def reportService
+
     static responseFormats = ['json']
     static allowedMethods = [update: "PUT", newrec: "POST", saveList: "POST"]
 
