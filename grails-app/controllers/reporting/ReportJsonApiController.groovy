@@ -3,6 +3,7 @@ package reporting
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import groovy.json.JsonSlurper
+import org.codehaus.groovy.runtime.InvokerHelper
 
 class ReportJsonApiController {
 
@@ -41,21 +42,17 @@ class ReportJsonApiController {
     @Secured(['ROLE_ADMINY', 'ROLE_COMMON'])
     def newrec() {
         String jsonObject = request.JSON
-        try {
-            def rep = new Report(JSON.parse(jsonObject))
-            rep.save(flush: true) // save JSON directly to grails domain
-            render rep as JSON
-
-        }
-        catch (Exception e) {
-            e.printStackTrace()
-            render "Error saving category : " + e
-        }
+        def rep = new Report(JSON.parse(jsonObject))
+        rep.save(flush: true) // save JSON directly to grails domain
+        render rep as JSON
     }
 
     @Secured(['ROLE_ADMINY', 'ROLE_COMMON'])
     def update() {
+        String jsonObject = request.JSON
+        def report = new Report(JSON.parse(jsonObject))
         def rep = Report.list().find { it.id == request.getJSON().id }
+        InvokerHelper.setProperties(rep, report.getProperties())
         rep.save(flush: true) // save JSON directly to grails domain
         render rep as JSON
     }
