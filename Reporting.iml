@@ -195,6 +195,7 @@
           <root url="jar://$MAVEN_REPOSITORY$/net/sf/ehcache/ehcache/2.9.0/ehcache-2.9.0.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/3.2.9.RELEASE/spring-security-web-3.2.9.RELEASE.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/3.2.9.RELEASE/spring-security-core-3.2.9.RELEASE.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-rest-client/3.1.4.RELEASE/grails-datastore-rest-client-3.1.4.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

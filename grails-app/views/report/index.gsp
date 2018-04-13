@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'report.label', default: 'Reports')}" />
+		<g:set var="entityName" value="${message(code: 'report.label', default: 'Report')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -24,46 +24,37 @@
 			<thead>
 					<tr>
 					
-						<g:sortableColumn property="name" title="${message(code: 'report.name.label', default: 'Name')}" />
+						<g:sortableColumn property="project" title="${message(code: 'report.project.label', default: 'Project')}" />
 					
-						<g:sortableColumn property="city" title="${message(code: 'report.city.label', default: 'City')}" />
+						<g:sortableColumn property="workdate" title="${message(code: 'report.workdate.label', default: 'Workdate')}" />
 					
-						<g:sortableColumn property="startDate" title="${message(code: 'report.startDate.label', default: 'Start Date')}" />
+						<g:sortableColumn property="hours" title="${message(code: 'report.hours.label', default: 'Hours')}" />
 					
-						<g:sortableColumn property="endDate" title="${message(code: 'report.endDate.label', default: 'End Date')}" />
-					
-						<g:sortableColumn property="purpose" title="${message(code: 'report.purpose.label', default: 'Purpose')}" />
-					
-						<g:sortableColumn property="notes" title="${message(code: 'report.notes.label', default: 'Notes')}" />
+						<g:sortableColumn property="descriptoin" title="${message(code: 'report.descriptoin.label', default: 'Descriptoin')}" />
 
-						<g:sortableColumn property="user" title="${message(code: 'report.user.label', default: 'User')}" />
-
+						<g:sortableColumn property="login" title="${message(code: 'report.login.label', default: 'Login')}" />
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${reportInstanceList}" status="i" var="reportInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${reportInstance.id}">${fieldValue(bean: reportInstance, field: "name")}</g:link></td>
+						<td><g:link action="show" id="${reportInstance.id}">${fieldValue(bean: reportInstance, field: "project")}</g:link></td>
 					
-						<td>${fieldValue(bean: reportInstance, field: "city")}</td>
+						<td><g:formatDate date="${reportInstance.workdate}" /></td>
 					
-						<td><g:formatDate date="${reportInstance.startDate}" /></td>
+						<td>${fieldValue(bean: reportInstance, field: "hours")}</td>
 					
-						<td><g:formatDate date="${reportInstance.endDate}" /></td>
-					
-						<td>${fieldValue(bean: reportInstance, field: "purpose")}</td>
-					
-						<td>${fieldValue(bean: reportInstance, field: "notes")}</td>
+						<td>${fieldValue(bean: reportInstance, field: "descriptoin")}</td>
 
-						<td>${fieldValue(bean: reportInstance, field: "user")}</td>
+						<td>${fieldValue(bean: reportInstance, field: "login")}</td>
 
 					</tr>
 				</g:each>
-        </tbody>
+				</tbody>
 			</table>
 			<div class="pagination">
-				<g:paginate next="Forward" prev="Back" total="${reportInstanceCount ?: 0}" />
+				<g:paginate total="${reportInstanceCount ?: 0}" />
 			</div>
 		</div>
 	</body>

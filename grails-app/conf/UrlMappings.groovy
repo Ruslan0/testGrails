@@ -12,7 +12,7 @@ class UrlMappings {
         }
         "/api"(controller: "ReportJsonApi", action: "index")
         "/api/$id?"(controller: "ReportJsonApi", action: "show")
-        "/api/new" (controller: "ReportJsonApi", action: "newrec", parseRequest: true)
+        "/api/create" (controller: "ReportJsonApi", action: "create", parseRequest: true)
         "/api/update" (controller: "ReportJsonApi", action: "update", parseRequest: true)
         //        "/blog/$id"(controller:"Report")
 //        "/"(view:"/index")

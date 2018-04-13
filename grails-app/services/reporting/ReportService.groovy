@@ -1,49 +1,47 @@
 package reporting
 
 import grails.plugin.springsecurity.SpringSecurityUtils
-import grails.transaction.Transactional
 import org.springframework.security.core.context.SecurityContextHolder
 
 class ReportService {
 
     def list(params) {
         def results
-        def username = SecurityContextHolder.getContext().getAuthentication().getName()
+        def login = SecurityContextHolder.getContext().getAuthentication().getName()
         if (SpringSecurityUtils.ifAllGranted('ROLE_ADMINY')) {
             results = Report.list(params).toList()
-        }
-        else {
+        } else {
             results = Report.where {
-                eq ("user",username )
+                eq("login", login)
             }.list(params)
         }
         return results
     }
 
-    def countrRports() {
+    def countrReports() {
         def count
-        def username = SecurityContextHolder.getContext().getAuthentication().getName()
+        def login = SecurityContextHolder.getContext().getAuthentication().getName()
         if (SpringSecurityUtils.ifAllGranted('ROLE_ADMINY')) {
             count = Report.count()
-        }
-        else {
+        } else {
             count = Report.where {
-                eq ("user",username )
+                eq("login", login)
             }.count()
         }
         return count
     }
 
     def save(Report reportInstance) {
-    // Add current User
-        reportInstance.setUser(SecurityContextHolder.getContext().getAuthentication().getName())
-        reportInstance.save flush:true, failOnError: true
-
+        // Add current User
+        reportInstance.setLogin(SecurityContextHolder.getContext().getAuthentication().getName())
+        def a = Employer.list().find{it.name=SecurityContextHolder.getContext().getAuthentication().getName()}
+        reportInstance.employer=[a]
+        reportInstance.save flush: true, failOnError: true
     }
 
     def delete(Report reportInstance) {
 
-        reportInstance.delete flush:true
+        reportInstance.delete flush: true
 
     }
 

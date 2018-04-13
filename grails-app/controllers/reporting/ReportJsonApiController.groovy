@@ -1,7 +1,6 @@
 package reporting
 
 import grails.converters.JSON
-import grails.plugin.springsecurity.annotation.Secured
 import groovy.json.JsonSlurper
 import org.codehaus.groovy.runtime.InvokerHelper
 
@@ -10,19 +9,16 @@ class ReportJsonApiController {
     def reportService
 
     static responseFormats = ['json']
-    static allowedMethods = [update: "PUT", newrec: "POST", saveList: "POST"]
+    static allowedMethods = [update: "PUT", create: "POST", saveList: "POST"]
 
-    @Secured(['ROLE_ADMINY', 'ROLE_COMMON'])
     def index() {
         respond Report.list()
     }
 
-    @Secured(['ROLE_ADMINY', 'ROLE_COMMON'])
     def show(Report reportInstance) {
         respond reportInstance
     }
 
-    @Secured(['ROLE_ADMINY', 'ROLE_COMMON'])
     def saveList() {
 
         String jsonObject = request.getJSON()
@@ -41,21 +37,19 @@ class ReportJsonApiController {
         }
     }
 
-    @Secured(['ROLE_ADMINY', 'ROLE_COMMON'])
-    def newrec() {
+    def create() {
         String jsonObject = request.JSON
         def rep = new Report(JSON.parse(jsonObject))
-        rep.save(flush: true) // save JSON directly to grails domain
+        reportService.save(rep)
         render rep as JSON
     }
 
-    @Secured(['ROLE_ADMINY', 'ROLE_COMMON'])
     def update() {
         String jsonObject = request.JSON
         def report = new Report(JSON.parse(jsonObject))
         def rep = Report.list().find { it.id == request.getJSON().id }
         InvokerHelper.setProperties(rep, report.getProperties())
-        rep.save(flush: true) // save JSON directly to grails domain
+        reportService.save(rep)
         render rep as JSON
     }
 }

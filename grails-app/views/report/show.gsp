@@ -22,56 +22,38 @@
 			</g:if>
 			<ol class="property-list report">
 			
-				<g:if test="${reportInstance?.name}">
+				<g:if test="${reportInstance?.project}">
 				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="report.name.label" default="Name" /></span>
+					<span id="project-label" class="property-label"><g:message code="report.project.label" default="Project" /></span>
 					
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${reportInstance}" field="name"/></span>
+						<span class="property-value" aria-labelledby="project-label"><g:fieldValue bean="${reportInstance}" field="project"/></span>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${reportInstance?.city}">
+				<g:if test="${reportInstance?.workdate}">
 				<li class="fieldcontain">
-					<span id="city-label" class="property-label"><g:message code="report.city.label" default="City" /></span>
+					<span id="workdate-label" class="property-label"><g:message code="report.workdate.label" default="Workdate" /></span>
 					
-						<span class="property-value" aria-labelledby="city-label"><g:fieldValue bean="${reportInstance}" field="city"/></span>
+						<span class="property-value" aria-labelledby="workdate-label"><g:formatDate date="${reportInstance?.workdate}" /></span>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${reportInstance?.startDate}">
+				<g:if test="${reportInstance?.hours}">
 				<li class="fieldcontain">
-					<span id="startDate-label" class="property-label"><g:message code="report.startDate.label" default="Start Date" /></span>
+					<span id="hours-label" class="property-label"><g:message code="report.hours.label" default="Hours" /></span>
 					
-						<span class="property-value" aria-labelledby="startDate-label"><g:formatDate date="${reportInstance?.startDate}" /></span>
+						<span class="property-value" aria-labelledby="hours-label"><g:fieldValue bean="${reportInstance}" field="hours"/></span>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${reportInstance?.endDate}">
+				<g:if test="${reportInstance?.descriptoin}">
 				<li class="fieldcontain">
-					<span id="endDate-label" class="property-label"><g:message code="report.endDate.label" default="End Date" /></span>
+					<span id="descriptoin-label" class="property-label"><g:message code="report.descriptoin.label" default="Descriptoin" /></span>
 					
-						<span class="property-value" aria-labelledby="endDate-label"><g:formatDate date="${reportInstance?.endDate}" /></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${reportInstance?.purpose}">
-				<li class="fieldcontain">
-					<span id="purpose-label" class="property-label"><g:message code="report.purpose.label" default="Purpose" /></span>
-					
-						<span class="property-value" aria-labelledby="purpose-label"><g:fieldValue bean="${reportInstance}" field="purpose"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${reportInstance?.notes}">
-				<li class="fieldcontain">
-					<span id="notes-label" class="property-label"><g:message code="report.notes.label" default="Notes" /></span>
-					
-						<span class="property-value" aria-labelledby="notes-label"><g:fieldValue bean="${reportInstance}" field="notes"/></span>
+						<span class="property-value" aria-labelledby="descriptoin-label"><g:fieldValue bean="${reportInstance}" field="descriptoin"/></span>
 					
 				</li>
 				</g:if>

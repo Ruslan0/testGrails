@@ -1,18 +1,26 @@
 import org.reporting.SecUser
 import org.reporting.SecRole
 import org.reporting.SecUserSecRole
+import reporting.Employer
 
 class BootStrap {
 
     def init = { servletContext ->
-        SecUser admin = new SecUser(username:'admin', password:'secret', enabled:true).save()
-        SecUser john = new SecUser(username:'john', password:'secret', enabled:true).save()
-        SecUser jane = new SecUser(username:'jane', password:'secret', enabled:true).save()
-        SecRole roleadmin = new SecRole(authority: 'ROLE_ADMINY').save()
-        SecRole rolecommon = new SecRole(authority: 'ROLE_COMMON').save()
-        SecUserSecRole.create(admin, roleadmin)
-        SecUserSecRole.create(jane, rolecommon)
-        SecUserSecRole.create(john, rolecommon)
+        if (Employer.list().empty) {
+            Employer admin = new Employer (name: 'admin', password: 'secret')
+            Employer simpleuser = new Employer (name: 'user', password: 'secret')
+            Employer.saveAll([admin,simpleuser])
+        }
+        Employer.list().each {
+            SecUser user = new SecUser(username: it.name, password: it.password, enabled:true).save()
+            String rolename
+            if (it.name=='admin')
+                rolename = 'ROLE_ADMINY'
+            else
+                rolename = 'ROLE_COMMON'
+            SecRole role = new SecRole(authority: rolename).save()
+            SecUserSecRole.create(user, role)
+        }
     }
     def destroy = {
     }
