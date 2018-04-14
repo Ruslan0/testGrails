@@ -11,6 +11,7 @@
 		<a href="#show-report" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
+				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
@@ -54,6 +55,17 @@
 					<span id="descriptoin-label" class="property-label"><g:message code="report.descriptoin.label" default="Descriptoin" /></span>
 					
 						<span class="property-value" aria-labelledby="descriptoin-label"><g:fieldValue bean="${reportInstance}" field="descriptoin"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${reportInstance?.employer}">
+				<li class="fieldcontain">
+					<span id="employer-label" class="property-label"><g:message code="report.employer.label" default="Employer" /></span>
+					
+						<g:each in="${reportInstance.employer}" var="e">
+						<span class="property-value" aria-labelledby="employer-label"><g:link controller="employer" action="show" id="${e.id}">${e?.encodeAsHTML()}</g:link></span>
+						</g:each>
 					
 				</li>
 				</g:if>

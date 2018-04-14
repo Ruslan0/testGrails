@@ -24,17 +24,7 @@ class ReportController {
         respond new Report(params)
     }
 
-    @Transactional
     def save(Report reportInstance) {
-        if (reportInstance == null) {
-            notFound()
-            return
-        }
-
-        if (reportInstance.hasErrors()) {
-            respond reportInstance.errors, view: 'create'
-            return
-        }
 
         reportService.save(reportInstance)
 
@@ -51,7 +41,6 @@ class ReportController {
         respond reportInstance
     }
 
-    @Transactional
     def update(Report reportInstance) {
         try {
             reportService.save(reportInstance)
@@ -63,7 +52,6 @@ class ReportController {
         render reportInstance
     }
 
-    @Transactional
     def delete(Report reportInstance) {
 
         if (reportInstance == null) {
@@ -71,7 +59,7 @@ class ReportController {
             return
         }
 
-        reportInstance.delete flush: true
+        reportService.delete(reportInstance)
 
         request.withFormat {
             form multipartForm {

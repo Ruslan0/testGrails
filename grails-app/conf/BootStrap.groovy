@@ -7,14 +7,14 @@ class BootStrap {
 
     def init = { servletContext ->
         if (Employer.list().empty) {
-            Employer admin = new Employer (name: 'admin', password: 'secret')
-            Employer simpleuser = new Employer (name: 'user', password: 'secret')
+            Employer admin = new Employer (login: 'admin', password: 'secret')
+            Employer simpleuser = new Employer (login: 'user', password: '123456')
             Employer.saveAll([admin,simpleuser])
         }
         Employer.list().each {
-            SecUser user = new SecUser(username: it.name, password: it.password, enabled:true).save()
+            SecUser user = new SecUser(username: it.login, password: it.password, enabled:true).save()
             String rolename
-            if (it.name=='admin')
+            if (it.login=='admin')
                 rolename = 'ROLE_ADMINY'
             else
                 rolename = 'ROLE_COMMON'

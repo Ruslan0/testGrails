@@ -38,3 +38,12 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: reportInstance, field: 'employer', 'error')} ">
+	<label for="employer">
+		<g:message code="report.employer.label" default="Employer" />
+		
+	</label>
+	<g:select name="employer" from="${reporting.Employer.list()}" multiple="multiple" optionKey="id" size="5" value="${reportInstance?.employer*.id}" class="many-to-many"/>
+
+</div>
+

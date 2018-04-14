@@ -89,5 +89,6 @@ grails.project.dependency.resolution = {
         //compile ":handlebars-asset-pipeline:1.0.0.3"
         compile ":spring-security-core:2.0.0"
         compile "org.grails.plugins:rest-client-builder:2.1.1"
+        compile "org.grails.plugins:spring-security-mock:2.0-RC2"
     }
 }

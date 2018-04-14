@@ -5,14 +5,12 @@ class Report {
     Date workdate
     Integer hours
     String descriptoin
-    String login
     static hasMany = [employer: Employer]
 
     static constraints = {
         project blank: false
         workdate blank: false
-        hours blank: false
+        hours blank: false, max: 24
         descriptoin blank: false
-        login display: false, nullable: true
     }
 }

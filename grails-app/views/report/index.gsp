@@ -11,8 +11,8 @@
 		<a href="#list-report" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 				<li><g:link controller='logout' action=''>Logout</g:link></li>
+				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
 		<div id="list-report" class="content scaffold-list" role="main">
@@ -31,8 +31,7 @@
 						<g:sortableColumn property="hours" title="${message(code: 'report.hours.label', default: 'Hours')}" />
 					
 						<g:sortableColumn property="descriptoin" title="${message(code: 'report.descriptoin.label', default: 'Descriptoin')}" />
-
-						<g:sortableColumn property="login" title="${message(code: 'report.login.label', default: 'Login')}" />
+					
 					</tr>
 				</thead>
 				<tbody>
@@ -46,9 +45,7 @@
 						<td>${fieldValue(bean: reportInstance, field: "hours")}</td>
 					
 						<td>${fieldValue(bean: reportInstance, field: "descriptoin")}</td>
-
-						<td>${fieldValue(bean: reportInstance, field: "login")}</td>
-
+					
 					</tr>
 				</g:each>
 				</tbody>
